@@ -4,5 +4,5 @@ def process_http_request(environ, start_response):
         ('Content-type', 'text/plain'),
     ]
     start_response(status, response_headers)
-    body = [(i + '\n') for i in environ['QUERY_STRING'].split('&')]
+    body = [bytes(i + '\n', 'ascii') for i in environ['QUERY_STRING'].split('&')]
     return body
